@@ -13,3 +13,6 @@ resource "aws_instance" "web" {
   EOF
 
 }
+
+git config --global  user.name    Malika85
+git config --global  user.email   malikakh0619@gmail.com
