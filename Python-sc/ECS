@@ -1,0 +1,13 @@
+import boto3
+client = boto3.client("ecs")
+def list_task_definition_versions(task_definition):
+    paginator = client.get_paginator("list_task_definition_versions")
+    response_iterator = paginator.paginate(taskDefinition=task_definition)
+    task_definition_versions = []
+    for response in response_iterator:
+        for task_definition_version in response["taskDefinitionVersions"]:
+            task_definition_versions.append(task_definition_version["taskDefinitionArn"])
+    return task_definition_versions
+task_definition_name = "step1_task_definition"
+task_definition_versions = list_task_definition_versions(task_definition_name)
+print(task_definition_versions)
